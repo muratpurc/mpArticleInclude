@@ -1,4 +1,4 @@
-CONTENIDO Modul mpArticleInclude 1.3.2 für CONTENIDO 4.9.x
+CONTENIDO Modul mpArticleInclude 1.3.3 für CONTENIDO 4.9.x
 
 ################################################################################
 TOC (Table of contents)
@@ -73,6 +73,9 @@ Inhalt eingebunden werden soll.
 
 ################################################################################
 CHANGELOG
+
+2014-07-23 mpArticleInclude 1.3.3 (für CONTENIDO 4.9.x)
+    * bugfix: Ermitteln der Länge des Ende-Markers
 
 2013-11-17 mpArticleInclude 1.3.2 (für CONTENIDO 4.9.x)
     * change: Überarbeiten der Moduleingabe und -ausgabe

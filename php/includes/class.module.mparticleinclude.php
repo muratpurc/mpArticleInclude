@@ -7,7 +7,7 @@
  * @author      Murat Purc <murat@purc.de>
  * @copyright   Copyright (c) 2013 Murat Purc (http://www.purc.de)
  * @license     http://www.gnu.org/licenses/gpl-2.0.html - GNU General Public License, version 2
- * @version     $Id: class.module.mparticleinclude.php 45 2013-11-17 17:52:31Z murat $
+ * @version     $Id: class.module.mparticleinclude.php 69 2014-07-23 06:44:22Z murat $
  */
 
 if (!defined('CON_FRAMEWORK')) {
@@ -300,11 +300,14 @@ class ModuleMpArticleInclude {
 
         // Extract content from article code output
         if (!empty($this->_code)) {
-            $startPos = strpos($this->_code, htmlspecialchars_decode($this->cmsStartMarker));
-            $endPos   = strpos($this->_code, htmlspecialchars_decode($this->cmsEndMarker));
+            $cmsStartMarker = htmlspecialchars_decode($this->cmsStartMarker);
+            $cmsEndMarker = htmlspecialchars_decode($this->cmsEndMarker);
+
+            $startPos = strpos($this->_code, $cmsStartMarker);
+            $endPos   = strpos($this->_code, $cmsEndMarker);
 
             if ($startPos !== false || $endPos !== false) {
-                $diffLen = $endPos - $startPos + strlen($this->cmsEndMarker);
+                $diffLen = $endPos - $startPos + strlen($cmsEndMarker);
                 $this->_code = substr($this->_code, $startPos, $diffLen);
                 return true;
             } else {
