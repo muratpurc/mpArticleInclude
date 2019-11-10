@@ -1,4 +1,4 @@
-CONTENIDO Modul mpArticle_Include 1.3 für CONTENIDO 4.9
+CONTENIDO Modul mpArticle_Include 1.3.1 für CONTENIDO 4.9
 
 ################################################################################
 TOC (Table of contents)
@@ -62,6 +62,9 @@ CHANGELOG
 
 2013-09-10 mpArticle_Include 1.3
     * Erste Veröffentlichung des mpArticle_Include Moduls
+
+2013-09-19 mpArticle_Include 1.3.1
+    * change: Inhalt inkl. Ende-Marker extrahieren
 
 
 ################################################################################

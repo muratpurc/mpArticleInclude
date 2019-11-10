@@ -3,12 +3,12 @@
  * Module mpArticle_Include output
  * @package     Module
  * @subpackage  mpArticle_Include
- * @version     1.3
+ * @version     1.3.1
  * @author      Willi Man
  * @author      Murat Purc <murat@purc.de>
  * @copyright   four for business AG
  * @link        http://www.4fb.de
- * $Id: mparticle_include_output.php 11 2013-09-10 22:21:23Z murat $
+ * $Id: mparticle_include_output.php 13 2013-09-18 22:32:56Z murat $
  */
 
 
@@ -101,7 +101,7 @@ if ($modContext->cmsCatID >= 0 && $modContext->cmsArtID >= 0) {
             $modContext->endPos   = strpos($modContext->code, $modContext->cmsEndMarker);
 
             if ($modContext->startPos !== false || $modContext->endPos !== false) {
-                $modContext->diffLen = $modContext->endPos - $modContext->startPos;
+                $modContext->diffLen = $modContext->endPos - $modContext->startPos + strlen($modContext->cmsEndMarker);
                 $modContext->code = substr($modContext->code, $modContext->startPos, $modContext->diffLen);
                 echo $modContext->code;
             } else {

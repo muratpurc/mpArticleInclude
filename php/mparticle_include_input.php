@@ -3,12 +3,12 @@
  * Module mpArticle_Include input
  * @package     Module
  * @subpackage  mpArticle_Include
- * @version     1.3
+ * @version     1.3.1
  * @author      Willi Man
  * @author      Murat Purc <murat@purc.de>
  * @copyright   four for business AG
  * @link        http://www.4fb.de
- * $Id: mparticle_include_input.php 11 2013-09-10 22:21:23Z murat $
+ * $Id: mparticle_include_input.php 13 2013-09-18 22:32:56Z murat $
  */
 
 
