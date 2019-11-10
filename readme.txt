@@ -1,4 +1,4 @@
-CONTENIDO Modul mpArticleInclude 1.3.3 für CONTENIDO 4.9.x
+CONTENIDO Modul mpArticleInclude 1.3.3 für CONTENIDO 4.9.x & CONTENIDO 4.10.x
 
 ################################################################################
 TOC (Table of contents)
