@@ -7,9 +7,8 @@
  * @package     Module
  * @subpackage  mpArticleInclude
  * @author      Murat Purc <murat@purc.de>
- * @copyright   Copyright (c) 2011-2013 Murat Purc (http://www.purc.de)
+ * @copyright   Copyright (c) 2011-2019 Murat Purc (http://www.purc.de)
  * @license     http://www.gnu.org/licenses/gpl-2.0.html - GNU General Public License, version 2
- * @version     $Id: mp_article_include_input.php 45 2013-11-17 17:52:31Z murat $
  */
 
 
