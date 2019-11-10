@@ -1,0 +1,10 @@
+SELECT_ARTICLE=Artikel wählen
+SELECT_ARTICLE_INFO_TEXT=Wenn kein Artikel gewählt wird, dann verwendet das Modul den aktuellsten Artikel (Datum letzte Änderung) aus der Kategorie
+END_MARKER_EXAMPLE=z. B. &lt;!--end:content--&gt;
+END_MARKER=Ende Marker
+MARKER_INFO_TEXT=Diese Marker müssen im HTML Code der Seite (im Layout) vorkommen, damit das Modul die Artikelinhalte extrahieren kann!
+MARKER=Marker
+PLEASE_CHOOSE=Bitte wählen
+SELECT_CATEGORY=Kategorie wählen
+START_MARKER_EXAMPLE=z. B. &lt;!--start:content--&gt;
+START_MARKER=Start Marker
