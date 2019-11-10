@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<module><name>mpArticle_Include</name><description>This module includes an article into an other&#13;
+<module><name>mpArticleInclude</name><description>This module includes an article into an other&#13;
 &#13;
-Author: Willi Man, Andreas Lindner, 4fb, B. Behrens, Murat Purc&#13;
-Version: 1.2</description><type>content</type><alias>mparticle_include</alias></module>
+Based on Article Include v 1.0 created by Willi Man, Andreas Lindner, 4fb, B. Behrens&#13;
+&#13;
+Author: Murat Purc &lt;murat@purc.de&gt;&#13;
+Link: http://forum.contenido.org/viewtopic.php?t=34110&#13;
+Link: http://www.purc.de/playground-cms_contenido_4.9-modul_mparticleinclude-a.129.html&#13;
+Version: 1.3.2</description><type>content</type><alias>mp_article_include</alias></module>
