@@ -74,6 +74,10 @@ Inhalt eingebunden werden soll.
 ################################################################################
 CHANGELOG
 
+2019-11-13 mpArticleInclude 1.4.0 (für CONTENIDO 4.9.x - 4.10.x)
+    * change: Ordner "vendor" in "lib" umbenannt
+    * change: Update auf Snoopy 2.0.0 mit PHP 7.2 support
+
 2014-07-23 mpArticleInclude 1.3.3 (für CONTENIDO 4.9.x)
     * bugfix: Ermitteln der Länge des Ende-Markers
 
