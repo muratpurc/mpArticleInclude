@@ -287,7 +287,7 @@ class ModuleMpArticleInclude {
     protected function _requestArticle() {
         // Get article output
         $moduleHandler = new cModuleHandler($this->idmod);
-        include_once($moduleHandler->getModulePath() . 'lib/Snoopy.class.php');
+        include_once($moduleHandler->getModulePath() . 'lib/Snoopy/Snoopy.class.php');
 
         $url = cUri::getInstance()->build(array(
             'idart' => $this->incIdart, 'lang' => $this->lang
