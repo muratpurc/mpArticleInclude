@@ -1,4 +1,4 @@
-CONTENIDO Modul mpArticleInclude 1.3.3 für CONTENIDO 4.9.x & CONTENIDO 4.10.x
+CONTENIDO Modul mpArticleInclude CONTENIDO CMS
 
 ################################################################################
 TOC (Table of contents)
@@ -103,4 +103,4 @@ SCHLUSSBEMERKUNG
 
 Benutzung des Moduls auf eigene Gefahr!
 
-Murat Purc, murat@purc.de
+Murat Purç, murat@purc.de

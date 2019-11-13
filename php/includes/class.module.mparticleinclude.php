@@ -4,8 +4,8 @@
  *
  * @package     CONTENIDO_Modules
  * @subpackage  mpArticleInclude
- * @author      Murat Purc <murat@purc.de>
- * @copyright   Copyright (c) 2013-2019 Murat Purc (http://www.purc.de)
+ * @author      Murat Purç <murat@purc.de>
+ * @copyright   Copyright (c) 2013-2019 Murat Purç (http://www.purc.de)
  * @license     http://www.gnu.org/licenses/gpl-2.0.html - GNU General Public License, version 2
  */
 
@@ -287,7 +287,7 @@ class ModuleMpArticleInclude {
     protected function _requestArticle() {
         // Get article output
         $moduleHandler = new cModuleHandler($this->idmod);
-        include_once($moduleHandler->getModulePath() . 'vendor/Snoopy.class.php');
+        include_once($moduleHandler->getModulePath() . 'lib/Snoopy.class.php');
 
         $url = cUri::getInstance()->build(array(
             'idart' => $this->incIdart, 'lang' => $this->lang
