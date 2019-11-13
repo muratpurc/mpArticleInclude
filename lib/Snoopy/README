@@ -1,11 +1,11 @@
 NAME:
 
-	Snoopy - the PHP net client v2.0.0
+	Snoopy - the PHP net client v2.0.0 (adapted to PHP 7.2)
 	
 SYNOPSIS:
 
 	include "Snoopy.class.php";
-	$snoopy = new Snoopy;
+	$snoopy = new \Snoopy\Snoopy();
 	
 	$snoopy->fetchtext("http://www.php.net/");
 	print $snoopy->results;
@@ -155,7 +155,7 @@ EXAMPLES:
 				the contents of the page (html-escaped):
 	
 	include "Snoopy.class.php";
-	$snoopy = new Snoopy;
+	$snoopy = new \Snoopy\Snoopy();
 	
 	$snoopy->user = "joe";
 	$snoopy->pass = "bloe";
@@ -178,7 +178,7 @@ EXAMPLES:
 				and html-escaped page:
 
 	include "Snoopy.class.php";
-	$snoopy = new Snoopy;
+	$snoopy = new \Snoopy\Snoopy();
 	
 	$submit_url = "http://lnk.ispi.net/texis/scripts/msearch/netsearch.html";
 	
@@ -204,7 +204,7 @@ EXAMPLES:
 	
 
 	include "Snoopy.class.php";
-	$snoopy = new Snoopy;
+	$snoopy = new \Snoopy\Snoopy();
 
 	$snoopy->proxy_host = "my.proxy.host";
 	$snoopy->proxy_port = "8080";
@@ -239,7 +239,7 @@ EXAMPLES:
 	Example: 	fetched framed content and display the results
 	
 	include "Snoopy.class.php";
-	$snoopy = new Snoopy;
+	$snoopy = new \Snoopy\Snoopy();
 	
 	$snoopy->maxframes = 5;
 	

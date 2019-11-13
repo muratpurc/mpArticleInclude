@@ -293,7 +293,7 @@ class ModuleMpArticleInclude {
             'idart' => $this->incIdart, 'lang' => $this->lang
         ), true);
 
-        $snoopy = new Snoopy();
+        $snoopy = new \Snoopy\Snoopy();
         $snoopy->fetch($url);
         $this->_code = trim($snoopy->results);
 
