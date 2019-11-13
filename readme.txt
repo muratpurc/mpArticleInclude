@@ -95,12 +95,11 @@ CHANGELOG
 ################################################################################
 MPARTICLEINCLUDE MODUL LINKS
 
-mpArticleInclude Modul für CONTENIDO CMS 4.9.x:
-http://www.purc.de/playground-cms_contenido_4.9-modul_mparticleinclude-a.129.html
+CONTENIDO Forum unter "CONTENIDO 4.10 -> Module und Plugins":
+https://forum.contenido.org/viewtopic.php?t=43773
 
-mpArticleInclude (aka Article Include) im CONTENIDO Forum unter Module 4.9.x:
+CONTENIDO Forum unter "CONTENIDO 4.9 -> Module und Plugins":
 http://forum.contenido.org/viewtopic.php?t=34110
-
 
 ################################################################################
 SCHLUSSBEMERKUNG
