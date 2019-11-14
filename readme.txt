@@ -1,4 +1,4 @@
-CONTENIDO Modul mpArticleInclude CONTENIDO CMS
+CONTENIDO CMS Modul mpArticleInclude zum Einbinden von CONTENIDO Artikeln
 
 ################################################################################
 TOC (Table of contents)
