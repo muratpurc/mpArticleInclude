@@ -14,7 +14,24 @@ if (!defined('CON_FRAMEWORK')) {
 }
 
 /**
- * CONTENIDO module class for mpNivoSlider
+ * CONTENIDO module class for mpArticleInclude
+ *
+ * @property int idmod
+ * @property int container
+ * @property int cmsCatID
+ * @property int cmsArtID
+ * @property bool debug
+ * @property string name
+ * @property int client
+ * @property int lang
+ * @property string cmsStartMarker
+ * @property string cmsEndMarker
+ * @property array cfg
+ * @property cDb db
+ * @property bool articleIsAvailable
+ * @property int incIdcatart
+ * @property int incIdcat
+ * @property int incIdart
  */
 class ModuleMpArticleInclude {
 
@@ -48,7 +65,7 @@ class ModuleMpArticleInclude {
      * Only options defined here will be accepted within passed $options to the module constructor!
      * @var  array
      */
-    protected $_properties = array(
+    protected $_properties = [
         'debug' => false,
         'name' => 'mpArticleInclude',
         'idmod' => 0,
@@ -68,21 +85,20 @@ class ModuleMpArticleInclude {
         'incIdcatart' => 0,
         'incIdcat' => 0,
         'incIdart' => 0,
-    );
+    ];
 
     /**
      * Module translations
      * @var  array
      */
-    protected $_i18n = array();
+    protected $_i18n = [];
 
     /**
      * Constructor, sets some properties
      * @param  array  $options  Options array
-     * @param  array  $translations  Assoziative translations list
+     * @param  array  $translations  Associative translations list
      */
-    public function __construct(array $options, array $translations = array()) {
-
+    public function __construct(array $options, array $translations = []) {
         foreach ($options as $k => $v) {
             $this->$k = $v;
         }
@@ -133,14 +149,16 @@ class ModuleMpArticleInclude {
     }
 
     /**
-     * Magic getter, see PHP doc...
+     * @param $name
+     * @return mixed|null
      */
     public function __get($name) {
         return (isset($this->_properties[$name])) ? $this->_properties[$name] : null;
     }
 
     /**
-     * Magic setter, see PHP doc...
+     * @param {String} $name
+     * @param {Mixed} $value
      */
     public function __set($name, $value) {
         if (isset($this->_properties[$name])) {
@@ -149,14 +167,15 @@ class ModuleMpArticleInclude {
     }
 
     /**
-     * Magic method, see PHP doc...
+     * @param {String} $name
+     * @return bool
      */
     public function __isset($name) {
         return (isset($this->_properties[$name]));
     }
 
     /**
-     * Magic method, see PHP doc...
+     * @param {String} $name
      */
     public function __unset($name) {
         if (isset($this->_properties[$name])) {
@@ -236,7 +255,7 @@ class ModuleMpArticleInclude {
 
         // get idcat, idcatart, idart and lastmodified from the database
         $sql = "SELECT ca.idart, ca.idcat, ca.idcatart, al.lastmodified "
-             . "FROM " . $this->cfg["tab"]["cat_art"] . " AS ca, " . $this->cfg["tab"]["art_lang"] . " AS al "
+             . "FROM `" . $this->cfg["tab"]["cat_art"] . "` AS ca, `" . $this->cfg["tab"]["art_lang"] . "` AS al "
              . "WHERE ca.idart = al.idart AND al.online = 1 AND al.idlang = " . $this->lang . " AND ";
         if ($this->cmsArtID == 0) {
             // if only idcat specified, get latest article of category
@@ -273,11 +292,7 @@ class ModuleMpArticleInclude {
         $catIsPublic = (int) $oCatLang->get('public');
         $catIsVisible = (int) $oCatLang->get('visible');
 
-        if ($catIsPublic && $catIsVisible) {
-            return true;
-        } else {
-            return false;
-        }
+        return ($catIsPublic && $catIsVisible);
     }
 
     /**
@@ -289,9 +304,9 @@ class ModuleMpArticleInclude {
         $moduleHandler = new cModuleHandler($this->idmod);
         include_once($moduleHandler->getModulePath() . 'lib/Snoopy/Snoopy.class.php');
 
-        $url = cUri::getInstance()->build(array(
+        $url = cUri::getInstance()->build([
             'idart' => $this->incIdart, 'lang' => $this->lang
-        ), true);
+        ], true);
 
         $snoopy = new \Snoopy\Snoopy();
         $snoopy->fetch($url);
@@ -302,12 +317,12 @@ class ModuleMpArticleInclude {
             $cmsStartMarker = htmlspecialchars_decode($this->cmsStartMarker);
             $cmsEndMarker = htmlspecialchars_decode($this->cmsEndMarker);
 
-            $startPos = strpos($this->_code, $cmsStartMarker);
-            $endPos   = strpos($this->_code, $cmsEndMarker);
+            $startPos = cString::findFirstPos($this->_code, $cmsStartMarker);
+            $endPos   = cString::findFirstPos($this->_code, $cmsEndMarker);
 
             if ($startPos !== false || $endPos !== false) {
                 $diffLen = $endPos - $startPos + strlen($cmsEndMarker);
-                $this->_code = substr($this->_code, $startPos, $diffLen);
+                $this->_code = cString::getPartOfString($this->_code, $startPos, $diffLen);
                 return true;
             } else {
                 $msg = "ERROR in module " . $this->name . "<pre>Couldn't detect marker {$this->cmsStartMarker} and/or {$this->cmsEndMarker}!\n"
@@ -316,7 +331,7 @@ class ModuleMpArticleInclude {
                 return false;
             }
         } else {
-            $msg = "ERROR in module " . $this->name . "<pre>Can't get article to include!\n" 
+            $msg = "ERROR in module " . $this->name . "<pre>Can't get article to include!\n"
                . "idcat {$this->cmsCatID}, idart {$this->cmsArtID}, idlang {$this->lang}, idclient {$this->client}\n";
             $this->_printInfo($msg);
             return false;
