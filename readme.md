@@ -28,13 +28,13 @@ Bei der Installationsbeschreibung wird davon ausgegangen, dass CONTENIDO in das
 DocumentRoot-Verzeichnis eines Webservers installiert wurde und das 
 Mandantenverzeichnis `cms` ist.
 
-1. Modul
+### Modul
 Den Modulordner `mp_article_include` samt aller Inhalte in das Modulverzeichnis
 des Mandanten `cms/data/modules` kopieren.
 Danach sollte man im Backend die Funktion `Module synchronisieren` unter
 `Style -> Module` ausführen.
 
-2. Marker im Layout
+### Marker im Layout
 In gewünschten Layouts die Marker `<!--start:content-->` und `<!--end:content-->`
 setzen, um die Inhalte zwischen den Markern extrahieren zu können. Die Marker
 sollten HTML-Kommentare sein, damit sie die Ausgabe der Artikel nicht
@@ -50,7 +50,7 @@ beeinträchtigen, z. B.:
 ...
 ```
 
-3. Einrichten des Moduls
+### Einrichten des Moduls
 Dieses Modul in einer Artikelvorlage einrichten, in der die Inhalte anderer Artikel
 (die auf Layouts mit den Markern basieren) eingebunden werden sollen.
 
