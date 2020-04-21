@@ -110,7 +110,8 @@ $oModule = new ModuleMpArticleInclude($aModuleConfiguration);
     $(function() {
         // Register event handler for category select change
         $('#<?php echo $oModule->getIdValue('cmsCatID') ?> select').change(function(e) {
-            $('form[name="tplcfgform"]').submit();
+            // NOTE: We need the coordinates (x, y) for template preconfiguration!
+            $('form[name="tplcfgform"]').append('<input type="hidden" name="x" value="1">').append('<input type="hidden" name="y" value="1">').submit();
         });
     });
 })(jQuery);
