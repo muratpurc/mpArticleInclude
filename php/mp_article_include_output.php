@@ -7,16 +7,20 @@
  * @package     Module
  * @subpackage  mpArticleInclude
  * @author      Murat Purç <murat@purc.de>
- * @copyright   Copyright (c) 2011-2019 Murat Purç (http://www.purc.de)
+ * @copyright   Copyright (c) 2011-2019 Murat Purç (https://www.purc.de)
  * @license     http://www.gnu.org/licenses/gpl-2.0.html - GNU General Public License, version 2
  */
 
+/**
+ * @var int $cCurrentModule
+ * @var int $cCurrentContainer
+ */
 
 // Includes
 cInclude('module', 'includes/class.module.mparticleinclude.php');
 
 // Module configuration
-$aModuleConfiguration = array(
+$aModuleConfiguration = [
     'debug' => false,
     'name' => 'mpArticleInclude',
     'idmod' => $cCurrentModule,
@@ -38,7 +42,7 @@ $aModuleConfiguration = array(
     'cfg' => cRegistry::getConfig(),
     'client' => cRegistry::getClientId(),
     'lang' => cRegistry::getLanguageId(),
-);
+];
 //##echo "<pre>" . print_r($aModuleConfiguration, true) . "</pre>";
 
 // Create mpArticleInclude module instance

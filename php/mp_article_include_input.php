@@ -7,10 +7,14 @@
  * @package     Module
  * @subpackage  mpArticleInclude
  * @author      Murat Purç <murat@purc.de>
- * @copyright   Copyright (c) 2011-2019 Murat Purç (http://www.purc.de)
+ * @copyright   Copyright (c) 2011-2019 Murat Purç (https://www.purc.de)
  * @license     http://www.gnu.org/licenses/gpl-2.0.html - GNU General Public License, version 2
  */
 
+/**
+ * @var int $cCurrentModule
+ * @var int $cCurrentContainer
+ */
 
 ################################################################################
 ########## Initialization/Settings
@@ -22,7 +26,7 @@ $client = cRegistry::getClientId();
 $lang = cRegistry::getLanguageId();
 
 // Module configuration
-$aModuleConfiguration = array(
+$aModuleConfiguration = [
     'debug' => false,
     'name' => 'mpArticleInclude',
     'idmod' => $cCurrentModule,
@@ -44,7 +48,7 @@ $aModuleConfiguration = array(
     'cfg' => cRegistry::getConfig(),
     'client' => $client,
     'lang' => $lang,
-);
+];
 //##echo "<pre>" . print_r($aModuleConfiguration, true) . "</pre>";
 
 // Create mpNivoSlider module instance
@@ -60,7 +64,7 @@ $oModule = new ModuleMpArticleInclude($aModuleConfiguration);
     <pre>idcat <?php echo $oModule->cmsCatID ?>, idart <?php echo $oModule->cmsArtID ?>, idclient <?php echo $client ?>, idlang <?php echo $lang ?></pre>
 <?php endif; ?>
 
-<table cellpadding="0" cellspacing="0" border="0">
+<table>
 <tr>
     <td class="text_medium" id="<?php echo $oModule->getIdValue('cmsCatID') ?>">
         <?php echo mi18n("SELECT_CATEGORY")?>:<br />
@@ -81,7 +85,7 @@ $oModule = new ModuleMpArticleInclude($aModuleConfiguration);
 <tr><td class="text_medium"><?php echo mi18n("MARKER")?>: </td></tr>
 <tr>
     <td class="text_medium">
-        <table cellpadding="0" cellspacing="0" border="0">
+        <table>
         <tr>
             <td class="text_medium">
                 <label for="<?php echo $oModule->getIdValue('cmsStartMarker') ?>"><?php echo mi18n("START_MARKER")?></label>
@@ -109,8 +113,8 @@ $oModule = new ModuleMpArticleInclude($aModuleConfiguration);
 (function($) {
     $(function() {
         // Register event handler for category select change
-        $('#<?php echo $oModule->getIdValue('cmsCatID') ?> select').change(function(e) {
-            // NOTE: We need the coordinates (x, y) for template preconfiguration!
+        $('#<?php echo $oModule->getIdValue('cmsCatID') ?> select').change(function() {
+            // NOTE: We need the coordinates (x, y) for template pre-configuration!
             $('form[name="tplcfgform"]').append('<input type="hidden" name="x" value="1">').append('<input type="hidden" name="y" value="1">').submit();
         });
     });

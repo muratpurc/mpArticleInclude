@@ -5,7 +5,7 @@
  * @package     CONTENIDO_Modules
  * @subpackage  mpArticleInclude
  * @author      Murat Purç <murat@purc.de>
- * @copyright   Copyright (c) 2013-2019 Murat Purç (http://www.purc.de)
+ * @copyright   Copyright (c) Murat Purç (https://www.purc.de)
  * @license     http://www.gnu.org/licenses/gpl-2.0.html - GNU General Public License, version 2
  */
 
@@ -112,8 +112,9 @@ class ModuleMpArticleInclude {
 
     /**
      * Main function to retrieve the article, runs some checks, like if article and category is
-     * available and finally it requests the article.
+     * available, and finally it requests the article.
      * @return  bool  Success state
+     * @throws cDbException|cException|cInvalidArgumentException
      */
     public function includeArticle() {
         $this->_printInfo("idcat {$this->cmsCatID}, idart {$this->cmsArtID}");
@@ -153,7 +154,7 @@ class ModuleMpArticleInclude {
      * @return mixed|null
      */
     public function __get($name) {
-        return (isset($this->_properties[$name])) ? $this->_properties[$name] : null;
+        return $this->_properties[$name] ?? null;
     }
 
     /**
@@ -188,19 +189,19 @@ class ModuleMpArticleInclude {
      */
     protected function _validate() {
         // debug mode
-        $this->debug = (bool) $this->debug;
+        $this->debug = cSecurity::toBoolean($this->debug);
 
-        $this->name = (string) $this->name;
-        $this->idmod = (int) $this->idmod;
-        $this->container = (int) $this->container;
-        $this->client = (int) $this->client;
-        $this->lang = (int) $this->lang;
+        $this->name = cSecurity::toString($this->name);
+        $this->idmod = cSecurity::toInteger($this->idmod);
+        $this->container = cSecurity::toInteger($this->container);
+        $this->client = cSecurity::toInteger($this->client);
+        $this->lang = cSecurity::toInteger($this->lang);
 
         // selected category id
-        $this->cmsCatID = (int) $this->cmsCatID;
+        $this->cmsCatID = cSecurity::toInteger($this->cmsCatID);
 
         // selected article id
-        $this->cmsArtID = (int) $this->cmsArtID;
+        $this->cmsArtID = cSecurity::toInteger($this->cmsArtID);
 
         // start and end marker
         if (empty($this->cmsStartMarker) && !empty($this->defaultStartMarker)) {
@@ -249,6 +250,7 @@ class ModuleMpArticleInclude {
     /**
      * Checks if article exists and is online
      * @return  bool
+     * @throws cDbException|cInvalidArgumentException
      */
     protected function _checkArticle() {
         $this->articleIsAvailable = false;
@@ -281,6 +283,7 @@ class ModuleMpArticleInclude {
     /**
      * Checks if category exists, is online and public
      * @return  bool
+     * @throws cException
      */
     protected function _checkCategory() {
         // check if category is online or protected
@@ -289,8 +292,8 @@ class ModuleMpArticleInclude {
         $this->_printInfo('$this->incIdcat: ' . print_r($this->incIdcat, true));
         $this->_printInfo('$this->lang: ' . print_r($this->lang, true));
         $this->_printInfo('$oCatLang->toArray(): ' . print_r($oCatLang->toArray(), true));
-        $catIsPublic = (int) $oCatLang->get('public');
-        $catIsVisible = (int) $oCatLang->get('visible');
+        $catIsPublic = cSecurity::toInteger($oCatLang->get('public'));
+        $catIsVisible = cSecurity::toInteger($oCatLang->get('visible'));
 
         return ($catIsPublic && $catIsVisible);
     }
@@ -298,6 +301,7 @@ class ModuleMpArticleInclude {
     /**
      * Requests the article by using Snoopy
      * @return  bool
+     * @throws cDbException|cException|cInvalidArgumentException
      */
     protected function _requestArticle() {
         // Get article output
