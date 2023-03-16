@@ -1,6 +1,6 @@
 <?php
 
-namespace Snoopy;
+namespace Purc\Snoopy;
 
 /*************************************************
  *
@@ -188,12 +188,10 @@ class Snoopy
                     return false;
                 }
                 return $this;
-                break;
             default:
                 // not a valid protocol
                 $this->error = 'Invalid protocol "' . $URI_PARTS["scheme"] . '"\n';
                 return false;
-                break;
         }
         return $this;
     }
@@ -286,12 +284,10 @@ class Snoopy
                     return false;
                 }
                 return $this;
-                break;
             default:
                 // not a valid protocol
                 $this->error = 'Invalid protocol "' . $URI_PARTS["scheme"] . '"\n';
                 return false;
-                break;
         }
         return $this;
     }
@@ -860,7 +856,7 @@ class Snoopy
                 if (isset($this->capath))
                     $context_opts['ssl']['capath'] = $this->capath;
             }
-                    
+
             $host = 'ssl://' . $host;
         }
 
@@ -882,8 +878,7 @@ class Snoopy
                 $port,
                 $errno,
                 $errstr,
-                $this->_fp_timeout,
-                $context);
+                $this->_fp_timeout);
         }
 
         if ($fp) {
@@ -933,7 +928,7 @@ class Snoopy
         $postdata = '';
 
         if (count($formvars) == 0 && count($formfiles) == 0)
-            return;
+            return '';
 
         switch ($this->_submit_type) {
             case "application/x-www-form-urlencoded":

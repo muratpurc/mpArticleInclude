@@ -1,61 +1,58 @@
 <?php
+
 /**
- * Module mpArticleInclude output.
+ * Module mp_article_include output.
  *
  * Based on Article Include v 1.0 created by Willi Man, Andreas Lindner, 4fb, B. Behrens
  *
  * @package     Module
- * @subpackage  mpArticleInclude
- * @author      Murat Purç <murat@purc.de>
- * @copyright   Copyright (c) 2011-2019 Murat Purç (https://www.purc.de)
- * @license     http://www.gnu.org/licenses/gpl-2.0.html - GNU General Public License, version 2
+ * @subpackage  mp_article_include
+ * @author      Murat Purç
+ * @copyright   Murat Purç it-solutions
+ * @license     GPL-2.0-or-later
+ * @link        https://www.purc.de
  */
 
-/**
- * @var int $cCurrentModule
- * @var int $cCurrentContainer
- */
+(function() {
 
-// Includes
-cInclude('module', 'includes/class.module.mparticleinclude.php');
+    if (!class_exists(\CONTENIDO\Plugin\MpDevTools\Module\AbstractBase::class)) {
+        new cException('This module requires the plugin "Mp Dev Tools", please download, install and activate it!');
+    }
 
-// Module configuration
-$aModuleConfiguration = [
-    'debug' => false,
-    'name' => 'mpArticleInclude',
-    'idmod' => $cCurrentModule,
-    'container' => $cCurrentContainer,
+    // Includes
+    if (!class_exists(MpArticleIncludeModule::class)) {
+        cInclude('module', 'includes/class.mp.article.include.module.php');
+    }
 
-    // Selected category id
-    'cmsCatID' => (int) "CMS_VALUE[1]",
+    // Create mp_article_include module instance
+    $module = new MpArticleIncludeModule([
+        'debug' => true,
 
-    // Selected article id
-    'cmsArtID' => (int) "CMS_VALUE[2]",
+        // Selected category id
+        'cmsCatID' => "CMS_VALUE[1]",
 
-    // Start and end marker
-    'cmsStartMarker' => "CMS_VALUE[3]",
-    'cmsEndMarker' => "CMS_VALUE[4]",
-    'defaultStartMarker' => '<!--start:content-->',
-    'defaultEndMarker' => '<!--end:content-->',
+        // Selected article id
+        'cmsArtID' => "CMS_VALUE[2]",
 
-    'db' => cRegistry::getDb(),
-    'cfg' => cRegistry::getConfig(),
-    'client' => cRegistry::getClientId(),
-    'lang' => cRegistry::getLanguageId(),
-];
-//##echo "<pre>" . print_r($aModuleConfiguration, true) . "</pre>";
+        // Start and end marker
+        'cmsStartMarker' => "CMS_VALUE[3]",
+        'cmsEndMarker' => "CMS_VALUE[4]",
+        'defaultStartMarker' => '<!--start:content-->',
+        'defaultEndMarker' => '<!--end:content-->',
 
-// Create mpArticleInclude module instance
-$oModule = new ModuleMpArticleInclude($aModuleConfiguration);
+        // Include mode
+        'cmsIncludeMode' => "CMS_VALUE[5]",
 
-// Retrieve article
-if (true === $oModule->includeArticle()) {
-    echo $oModule->getCode();
-} else {
-    // Do your error handling here...
-}
+        'db' => cRegistry::getDb(),
+    ]);
 
-// Cleanup
-unset($oModule);
+    // Retrieve article
+    if (true === $module->includeArticle()) {
+        echo $module->getCode();
+    } else {
+        // Do your error handling here...
+    }
+
+})();
 
 ?>

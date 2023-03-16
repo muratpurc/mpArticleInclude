@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<module><name>mp_article_include</name><description>This module includes an article into an other&#13;
+<module><name>mp_article_include</name><description>This module includes an article into another article&#13;
 &#13;
 Based on Article Include v 1.0 created by Willi Man, Andreas Lindner, 4fb, B. Behrens.&#13;
 &#13;
-Author: Murat Purç &lt;murat@purc.de&gt;&#13;
+Author: Murat Purç&#13;
 Link: https://github.com/muratpurc/mpArticleInclude&#13;
-Version: 1.4.1</description><type>content</type><alias>mp_article_include</alias></module>
+Version: 1.5.0</description><type>content</type><alias>mp_article_include</alias></module>
