@@ -27,7 +27,7 @@
         cInclude('module', 'includes/class.mp.article.include.module.php');
     }
 
-    // Create mpNivoSlider module instance
+    // Create mp_article_include module instance
     $module = new MpArticleIncludeModule([
         'debug' => false,
 
@@ -109,21 +109,21 @@
     // Start marker row
     $infoBox = new cGuiBackendHelpbox('(' . mi18n("START_MARKER_EXAMPLE") . ')');
     $cmsToken = $module->getCmsToken(3);
-    $textbox = new cHTMLTextbox($cmsToken->getVar(), $cmsToken->getValue());
-    $textbox->setID($module->getIdValue('cmsStartMarker'))->setStyle('width:250px');
+    $textBox = new cHTMLTextbox($cmsToken->getVar(), $cmsToken->getValue());
+    $textBox->setID($module->getIdValue('cmsStartMarker'))->setStyle('width:250px');
     $markerTable->addRow([
         mi18n("START_MARKER"),
-        $textbox->render() . $infoBox->render()
+        $textBox->render() . $infoBox->render()
     ]);
 
     // End marker row
     $infoBox = new cGuiBackendHelpbox('(' . mi18n("END_MARKER_EXAMPLE") . ')');
     $cmsToken = $module->getCmsToken(4);
-    $textbox = new cHTMLTextbox($cmsToken->getVar(), $cmsToken->getValue());
-    $textbox->setID($module->getIdValue('cmsEndMarker'))->setStyle('width:250px');
+    $textBox = new cHTMLTextbox($cmsToken->getVar(), $cmsToken->getValue());
+    $textBox->setID($module->getIdValue('cmsEndMarker'))->setStyle('width:250px');
     $markerTable->addRow([
         mi18n("END_MARKER"),
-        $textbox->render() . $infoBox->render()
+        $textBox->render() . $infoBox->render()
     ]);
 
     $table->addRow(

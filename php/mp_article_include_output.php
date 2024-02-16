@@ -15,6 +15,9 @@
 
 (function() {
 
+    ############################################################################
+    ########## Initialization/Settings
+
     if (!class_exists(\CONTENIDO\Plugin\MpDevTools\Module\AbstractBase::class)) {
         new cException('This module requires the plugin "Mp Dev Tools", please download, install and activate it!');
     }
@@ -26,7 +29,7 @@
 
     // Create mp_article_include module instance
     $module = new MpArticleIncludeModule([
-        'debug' => true,
+        'debug' => false,
 
         // Selected category id
         'cmsCatID' => "CMS_VALUE[1]",
@@ -45,6 +48,9 @@
 
         'db' => cRegistry::getDb(),
     ]);
+
+    ############################################################################
+    ########## Output
 
     // Retrieve article
     if (true === $module->includeArticle()) {
