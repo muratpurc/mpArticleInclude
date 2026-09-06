@@ -100,6 +100,9 @@ System-Ebene gesetzt werden können.
 
 ## Changelog
 
+**2026-09-06 mp_article_include 1.5.6 (für CONTENIDO 4.10.2-dev)**
+- change: Auf PHP 8.0 und CONTENIDO 4.10.2-dev aktualisiert
+
 **2023-03-16 mp_article_include 1.5.0 (für CONTENIDO 4.10.x)**
 - change: PHP 8.1 Support
 - change: Auswahl diverser Methoden zum Einbinden (HTTP-Anfragen) von Artikeln
