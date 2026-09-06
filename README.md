@@ -28,8 +28,8 @@ http://forum.contenido.org/viewtopic.php?t=24027&p=132951#p132951
 
 ## Voraussetzungen
 
-- CONTENIDO >= 4.10.*
-- PHP >= 7.1 und PHP < 8.2
+- CONTENIDO >= 4.10.2-dev
+- PHP >= 8.0 und PHP <= 8.4
 - CONTENIDO Plugin "Mp Dev Tools"
 
 Das benötigte Plugin (Package "mp_dev_tools.zip") von der [GitHub-Seite](https://github.com/muratpurc/CONTENIDO-plugin-mp_dev_tools/releases)

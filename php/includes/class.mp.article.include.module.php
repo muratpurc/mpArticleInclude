@@ -16,88 +16,65 @@ use Purc\Snoopy\Snoopy;
 /**
  * CONTENIDO module class for mp_article_include
  *
- * @property int cmsCatID
- * @property int cmsArtID
- * @property string cmsStartMarker
- * @property string cmsEndMarker
- * @property string cmsIncludeMode
- * @property cDb db
- * @property bool articleIsAvailable
- * @property int incIdcatart
- * @property int incIdcat
- * @property int incIdart
- * @property string incLastModified
- * @property array i18n
+ * @property int $cmsCatID
+ * @property int $cmsArtID
+ * @property string $cmsStartMarker
+ * @property string $cmsEndMarker
+ * @property string $cmsIncludeMode
+ * @property cDb $db
+ * @property bool $articleIsAvailable
+ * @property int $incIdcatart
+ * @property int $incIdcat
+ * @property int $incIdart
+ * @property string $incLastModified
+ * @property array $i18n
  */
 class MpArticleIncludeModule extends AbstractBase
 {
 
     /**
-     * Default start marker.
-     *
-     * @var string
+     * @var string Default start marker.
      */
-    const DEFAULT_START_MARKER = '<!--start:content-->';
+    public const DEFAULT_START_MARKER = '<!--start:content-->';
 
     /**
-     * Default end marker.
-     *
-     * @var string
+     * @var string Default end marker.
      */
-    const DEFAULT_END_MARKER = '<!--end:content-->';
+    public const DEFAULT_END_MARKER = '<!--end:content-->';
 
     /**
-     * Default include mode.
-     *
-     * @var string
+     * @var string Default include mode.
      */
-    const DEFAULT_INCLUDE_MODE = 'fsockopen';
+    public const DEFAULT_INCLUDE_MODE = 'fsockopen';
 
     /**
-     * Setting include mode.
-     *
-     * @var string
+     * @var string Setting include mode.
      */
-    const SETTING_INCLUDE_MODE = 'setting';
+    public const SETTING_INCLUDE_MODE = 'setting';
 
     /**
-     * Cache lifetime.
-     *
-     * @var int
+     * @var int Cache lifetime.
      */
-    const CACHE_LIFETIME = 2592000; // 1 month (60 * 60 * 24 * 30)
+    public const CACHE_LIFETIME = 2592000; // 1 month (60 * 60 * 24 * 30)
 
     /**
-     * To store extracted output code of included article.
-     *
-     * @var string
+     * @var string To store extracted output code of included article.
      */
-    protected $code = '';
+    protected string $code = '';
 
     /**
-     * Unique module id (module id + container)
-     * @var  string
+     * @var string Unique module id (module id + container)
      */
-    protected $uid = '';
+    protected string $uid = '';
+
+    protected ?cFileCache $cache = null;
 
     /**
-     * File cache instance.
-     *
-     * @var cFileCache
+     * @var string Identifier for the file cache.
      */
-    protected $cache = null;
+    protected string $cacheId = '';
 
-    /**
-     * Identifier for the file cache.
-     *
-     * @var string
-     */
-    protected $cacheId = '';
-
-    /**
-     * @var float
-     */
-    protected $startTime;
+    protected float $startTime;
 
     /**
      * Module properties structure.
@@ -105,10 +82,8 @@ class MpArticleIncludeModule extends AbstractBase
      * See {@see AbstractBase::$baseProperties} for base properties. Only
      * properties being defined here and in the base class ($baseProperties)
      * will be taken over to the $properties structure.
-     *
-     * @var  array
      */
-    protected $properties = [
+    protected array $properties = [
         'cmsCatID' => 0,
         'cmsArtID' => 0,
         'cmsStartMarker' => '',
@@ -149,8 +124,8 @@ class MpArticleIncludeModule extends AbstractBase
     }
 
     /**
-     * Main function to retrieve the article, runs some checks, like if article
-     * and category is available, and finally it requests the article.
+     * Main function to retrieve the article, runs some checks, like if the article
+     * and category are available, and finally, it requests the article.
      *
      * @return  bool  Success state
      * @throws cDbException|cException|cInvalidArgumentException
@@ -187,9 +162,7 @@ class MpArticleIncludeModule extends AbstractBase
     }
 
     /**
-     * Returns the extracted code (HTML output) from article.
-     *
-     * @return string
+     * Returns the extracted code (HTML output) from the article.
      */
     public function getCode(): string
     {
@@ -199,7 +172,7 @@ class MpArticleIncludeModule extends AbstractBase
     /**
      * Validates module configuration/data
      */
-    protected function validate()
+    protected function validate(): void
     {
         // Selected category id
         $this->cmsCatID = cSecurity::toInteger($this->cmsCatID);
@@ -239,10 +212,7 @@ class MpArticleIncludeModule extends AbstractBase
     }
 
     /**
-     * Returns the id attribute value by concatenating passed name with the module uid.
-     *
-     * @param string $name
-     * @return string
+     * Returns the id attribute value by concatenating the passed name with the module uid.
      */
     public function getIdValue(string $name): string
     {
@@ -251,7 +221,6 @@ class MpArticleIncludeModule extends AbstractBase
 
     /**
      * Returns the module uid (module id + container number).
-     * @return string
      */
 	public function getUid(): string
     {
@@ -259,13 +228,9 @@ class MpArticleIncludeModule extends AbstractBase
 	}
 
     /**
-     * Renders the select for the include mode.
+     * Renders select for the include mode.
      *
-     * @param string $name
-     * @param string $selectedValue
-     * @return string
-     * @throws cDbException
-     * @throws cException
+     * @throws cDbException|cException
      */
     public function renderIncludeModeSelect(string $name, string $selectedValue): string
     {
@@ -299,8 +264,6 @@ class MpArticleIncludeModule extends AbstractBase
 
     /**
      * Renders the JavaScript code for the module input.
-     *
-     * @return string
      */
     public function renderModuleInputJavaScript(): string
     {
@@ -323,8 +286,7 @@ class MpArticleIncludeModule extends AbstractBase
     /**
      * Checks if article exists and is online.
      *
-     * @return  bool
-     * @throws cDbException|cInvalidArgumentException
+     * @throws cDbException
      */
     protected function checkArticle(): bool
     {
@@ -338,10 +300,10 @@ class MpArticleIncludeModule extends AbstractBase
                 ca.idart,
                 ca.idcat,
                 ca.idcatart,
-                al.lastmodified 
+                al.lastmodified
             FROM
-                `" . cRegistry::getDbTableName('cat_art') . "` AS ca,
-                `" . cRegistry::getDbTableName('art_lang') . "` AS al 
+                `" . cDb::getTableName('cat_art') . "` AS ca,
+                `" . cDb::getTableName('art_lang') . "` AS al
             WHERE
                 ca.idart = al.idart AND
                 al.online = 1 AND
@@ -371,8 +333,8 @@ class MpArticleIncludeModule extends AbstractBase
     }
 
     /**
-     * Checks if category exists, is online and public
-     * @return  bool
+     * Checks if category exists, is online and public.
+     *
      * @throws cException
      */
     protected function checkCategory(): bool
@@ -392,7 +354,6 @@ class MpArticleIncludeModule extends AbstractBase
     /**
      * Requests the article by using one of the defined include modes.
      *
-     * @return  bool
      * @throws cDbException|cException|cInvalidArgumentException
      */
     protected function requestArticle(): bool
@@ -441,9 +402,7 @@ class MpArticleIncludeModule extends AbstractBase
     /**
      * Retrieves the article to include from the cache.
      *
-     * @return bool
-     * @throws cException
-     * @throws cInvalidArgumentException
+     * @throws cException|cInvalidArgumentException
      */
     protected function retrieveFromCache(): bool
     {
@@ -469,9 +428,7 @@ class MpArticleIncludeModule extends AbstractBase
      * Checks if the article modification date newer as the cache file date,
      * in case the cache file exists.
      *
-     * @return bool
-     * @throws cException
-     * @throws cInvalidArgumentException
+     * @throws cException|cInvalidArgumentException
      */
     protected function validateCache(): bool
     {
@@ -493,13 +450,12 @@ class MpArticleIncludeModule extends AbstractBase
     }
 
     /**
-     * Does the real request depending on selected include mode.
+     * Does the real request depending on the selected include mode.
      *
-     * @param string $url
      * @return bool|mixed|string
      * @throws cException
      */
-    protected function retrieveFromRequest(string $url)
+    protected function retrieveFromRequest(string $url): mixed
     {
         $mode = $this->cmsIncludeMode;
 
@@ -535,10 +491,8 @@ class MpArticleIncludeModule extends AbstractBase
 
     /**
      * Simple debugger, prints preformatted text, if debugging is enabled.
-     *
-     * @param string $msg
      */
-    protected function _printInfo(string $msg)
+    protected function _printInfo(string $msg): void
     {
         if ($this->debug) {
             echo "<pre>$msg</pre>";

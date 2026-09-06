@@ -84,7 +84,9 @@
     if ($module->cmsCatID > 0) {
         $select = buildArticleSelect("CMS_VAR[2]", $module->cmsCatID, $module->cmsArtID);
     } else {
-        $select = (new cHTMLSelectElement("CMS_VAR[2]"))->setDisabled(true)->autoFill(['' => mi18n("VAL_PLEASE_CHOOSE")])->render();
+        $select = (new cHTMLSelectElement("CMS_VAR[2]"))
+            ->setDisabled(true)
+            ->autoFill(['' => mi18n("VAL_PLEASE_CHOOSE")])->render();
     }
     $table->addRow([
         mi18n("SELECT_ARTICLE"),
